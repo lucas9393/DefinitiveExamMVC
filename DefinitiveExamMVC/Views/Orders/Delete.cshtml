@@ -1,0 +1,49 @@
+﻿@model NewExamMVC.Models.Order
+
+@{
+    ViewData["Title"] = "Cancella ordine";
+}
+
+<h3>Confermare cancellazione?</h3>
+<div>
+    <h4>Ordine: </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Creation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Creation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sending)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sending)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Cancella" class="btn btn-danger" />
+        <a asp-action="Index">Torna alla lista</a>
+    </form>
+</div>

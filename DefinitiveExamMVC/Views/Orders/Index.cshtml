@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NewExamMVC.Models.Order>
+
+@{
+    ViewData["Title"] = "Lista ordini";
+}
+
+<form asp-action="Create">
+    <input type="submit" value="Aggiungi un nuovo ordine" class="btn btn-primary" />
+</form>
+
+<form asp-action="Index">
+    @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+    {
+        <p>
+            Filtra ordini per Id cliente: @Html.DropDownList("idCustomer", "--")
+            <input class="btn btn-default" type="submit" value="Filtra" />
+        </p>
+    }
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Creation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sending)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Creation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sending)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Modifica</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Cancella</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
